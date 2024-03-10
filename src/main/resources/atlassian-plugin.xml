@@ -1,0 +1,24 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">com/ubc/atlassian/bamboo/maven/maven-extractor-16x16.png</param>
+        <param name="plugin-logo">com/ubc/atlassian/bamboo/maven/maven-extractor-72x72.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <!-- Right now, since TextProvider is not utilized, this property file is not used. But don't remove it. It must be implemented. -->
+    <resource type="i18n" name="com.ubc.atlassian.plugin.atlassian.bamboo.maven language" location="com/ubc/atlassian/plugin/atlassian/bamboo/maven/english"/>
+
+    <taskType name="Maven POM Value Extractor" class="com.ubc.atlassian.plugin.atlassian.bamboo.maven.MavenVariableTask" key="maven-pom-parser-plugin">
+        <description>Extracts values from Maven POMs and sets build variables using the values.</description>
+        <category name="builder"/>
+
+        <configuration class="com.ubc.atlassian.plugin.atlassian.bamboo.maven.MavenVariableTaskConfigurator"/>
+
+        <resource type="freemarker" name="edit" location="com/ubc/atlassian/plugin/atlassian/bamboo/maven/editMavenVariableTask.ftl"/>
+        <resource type="download" name="icon" location="com/ubc/atlassian/plugin/atlassian/bamboo/maven/maven-extractor-72x72.png"/>
+    </taskType>
+    
+</atlassian-plugin>
